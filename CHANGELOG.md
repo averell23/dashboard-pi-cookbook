@@ -1,10 +1,10 @@
-# CHANGELOG for ampelserver
+# CHANGELOG for dashboard-pi
 
-This file is used to list changes made in each version of ampelserver.
+This file is used to list changes made in each version of dashboard-pi.
 
 ## 0.1.0:
 
-* Initial release of ampelserver
+* Initial release of dashboard-pi
 
 - - -
 Check the [Markdown Syntax Guide](http://daringfireball.net/projects/markdown/syntax) for help with Markdown.

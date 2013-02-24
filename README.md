@@ -1,4 +1,4 @@
-ampelserver Cookbook
+dashboard-pi Cookbook
 ====================
 This sets up your Rasperry PI as a dashboard machine, following these instructions:
 http://alexba.in/blog/2013/01/07/use-your-raspberrypi-to-power-a-company-dashboard/
@@ -20,7 +20,7 @@ None so far
 Usage
 -----
 
-Just include `ampelserver` in your node's `run_list`:
+Just include `dashboard-pi` in your node's `run_list`:
 
 ```json
 {

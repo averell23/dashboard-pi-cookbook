@@ -1,5 +1,5 @@
 #
-# Cookbook Name:: ampelserver
+# Cookbook Name:: dashboard-pi
 # Recipe:: default
 #
 # Copyright 2013, YOUR_COMPANY_NAME
@@ -18,7 +18,7 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 
-package "chromium-browser" 
+package "chromium" 
 package "ttf-mscorefonts-installer"
 package "unclutter"
 

@@ -52,7 +52,7 @@ cron "Switch off monitor at night" do
 end
 
 cron "Switch the monitor on each weekday morning" do
-  hour time_no
+  hour time_on
   minute 0
   weekday '1-5'
   command '/usr/bin/sispmctl -o 3'

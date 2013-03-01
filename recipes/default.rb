@@ -18,7 +18,7 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 
-package "chromium" 
+package "chromium"
 package "ttf-mscorefonts-installer"
 package "unclutter"
 
@@ -40,4 +40,20 @@ cookbook_file "/etc/lightdm/lightdm.conf" do
   owner 'root'
   group 'root'
   mode '0644'
+end
+
+time_off = 19 - node.dashboard_pi.utc_offset
+time_on = 9 - node.dashboard_pi.utc_offset
+
+cron "Switch off monitor at night" do
+  hour time_off
+  minute 0
+  command '/usr/bin/sispmctl -f 3'
+end
+
+cron "Switch the monitor on each weekday morning" do
+  hour time_no
+  minute 0
+  weekday '1-5'
+  command '/usr/bin/sispmctl -o 3'
 end

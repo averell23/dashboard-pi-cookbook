@@ -65,14 +65,14 @@ end
 
 cron "Switch off monitor at night" do
   user 'pi'
-  hour time_off
+  hour 19
   minute 0
   command '/usr/local/bin/monitor_control off'
 end
 
 cron "Switch the monitor on each weekday morning" do
   user 'pi'
-  hour time_on
+  hour 9
   minute 0
   weekday '1-5'
   command '/usr/local/bin/monitor_control on'

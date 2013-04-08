@@ -21,6 +21,7 @@
 package "chromium"
 package "ttf-mscorefonts-installer"
 package "unclutter"
+package "x11-xserver-utils"
 
 directory "/home/#{node.dashboard_pi.user}/.config/lxsession/LXDE" do
   recursive true
@@ -33,6 +34,11 @@ template "/home/#{node.dashboard_pi.user}/.config/lxsession/LXDE/autostart" do
   owner node.dashboard_pi.user
   mode '0600'
   variables :url => node.dashboard_pi.url
+end
+
+template "/usr/local/bin/monitor_control" do
+  source 'monitor_control.sh.erb'
+  mode '0755'
 end
 
 cookbook_file "/etc/lightdm/lightdm.conf" do

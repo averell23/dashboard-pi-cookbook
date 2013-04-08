@@ -52,14 +52,16 @@ time_off = 19 - node.dashboard_pi.utc_offset
 time_on = 9 - node.dashboard_pi.utc_offset
 
 cron "Switch off monitor at night" do
+  user 'pi'
   hour time_off
   minute 0
-  command '/usr/bin/sispmctl -f 3'
+  command '/usr/local/bin/monitor_control off'
 end
 
 cron "Switch the monitor on each weekday morning" do
+  user 'pi'
   hour time_on
   minute 0
   weekday '1-5'
-  command '/usr/bin/sispmctl -o 3'
+  command '/usr/local/bin/monitor_control on'
 end

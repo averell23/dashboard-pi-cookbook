@@ -22,6 +22,7 @@ package "chromium"
 package "ttf-mscorefonts-installer"
 package "unclutter"
 package "x11-xserver-utils"
+package "tzdata"
 
 directory "/home/#{node.dashboard_pi.user}/.config/lxsession/LXDE" do
   recursive true
@@ -47,9 +48,20 @@ cookbook_file "/etc/lightdm/lightdm.conf" do
   group 'root'
   mode '0644'
 end
+ 
+template "/etc/timezone" do
+  source "timezone.conf.erb"
+  owner 'root'
+  group 'root'
+  mode 0644
+  notifies :run, 'bash[dpkg-reconfigure tzdata]'
+end
 
-time_off = 19 - node.dashboard_pi.utc_offset
-time_on = 9 - node.dashboard_pi.utc_offset
+bash 'dpkg-reconfigure tzdata' do
+  user 'root'
+  code "/usr/sbin/dpkg-reconfigure -f noninteractive tzdata"
+  action :nothing
+end
 
 cron "Switch off monitor at night" do
   user 'pi'

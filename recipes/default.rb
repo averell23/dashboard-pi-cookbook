@@ -23,6 +23,7 @@ package "ttf-mscorefonts-installer"
 package "unclutter"
 package "x11-xserver-utils"
 package "tzdata"
+package "liblockdev1"
 
 directory "/home/#{node.dashboard_pi.user}/.config/lxsession/LXDE" do
   recursive true
@@ -49,6 +50,7 @@ cookbook_file "/etc/lightdm/lightdm.conf" do
   mode '0644'
 end
 
+# See instructions at http://www.raspberrypi.org/phpBB3/viewtopic.php?f=64&t=7570
 remote_file "/tmp/cec.deb" do
   source "http://sourceforge.net/projects/selfprogramming/files/libCEC.deb/libcec_2.1.0-1_armhf.deb/download?use_mirror=freefr&use_mirror=netcologne"
 end

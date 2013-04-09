@@ -1,24 +1,18 @@
 #!/bin/bash
-export DISPLAY=:0.0
+# See instructions at http://www.raspberrypi.org/phpBB3/viewtopic.php?f=64&t=7570
 
 if [ $# -eq 0 ]; then
-  echo usage: $(basename $0) "on|off|status"
+  echo usage: $(basename $0) "on|off"
   exit 1
 fi
 
 if [ $1 = "off" ]; then
   echo -en "Turning monitor off..."
-  xset dpms force off
-  echo -en "done.\nCheck:"
-  xset -q|grep "Monitor is"
+  /opt/vc/bin/tvservice -o
 elif [ $1 = "on" ]; then
   echo -en "Turning monitor on..."
-  xset dpms force on
-  xset s reset
-  echo -en "done.\nCheck:"
-  xset -q|grep "Monitor is"
-elif [ $1 = "status" ]; then
-  xset -q|sed -ne 's/^[ ]*Monitor is //p'
+  /opt/vc/bin/tvservice -p
+  /etc/init.d/lightdm restart
 else 
   echo usage: $(basename $0) "on|off|status"
 fi

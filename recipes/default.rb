@@ -23,7 +23,6 @@ package "ttf-mscorefonts-installer"
 package "unclutter"
 package "x11-xserver-utils"
 package "tzdata"
-package "liblockdev1"
 
 directory "/home/#{node.dashboard_pi.user}/.config/lxsession/LXDE" do
   recursive true
@@ -49,13 +48,6 @@ cookbook_file "/etc/lightdm/lightdm.conf" do
   group 'root'
   mode '0644'
 end
-
-# See instructions at http://www.raspberrypi.org/phpBB3/viewtopic.php?f=64&t=7570
-remote_file "/tmp/cec.deb" do
-  source "http://sourceforge.net/projects/selfprogramming/files/libCEC.deb/libcec_2.1.0-1_armhf.deb/download?use_mirror=freefr&use_mirror=netcologne"
-end
-
-execute "dpkg -i /tmp/cec.deb"
  
 template "/etc/timezone" do
   source "timezone.conf.erb"
@@ -72,14 +64,12 @@ bash 'dpkg-reconfigure tzdata' do
 end
 
 cron "Switch off monitor at night" do
-  user 'pi'
   hour 19
   minute 0
   command '/usr/local/bin/monitor_control off'
 end
 
 cron "Switch the monitor on each weekday morning" do
-  user 'pi'
   hour 9
   minute 0
   weekday '1-5'

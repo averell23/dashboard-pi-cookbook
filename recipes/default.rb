@@ -48,6 +48,12 @@ cookbook_file "/etc/lightdm/lightdm.conf" do
   group 'root'
   mode '0644'
 end
+
+remote_file "/tmp/cec.deb" do
+  source "http://sourceforge.net/projects/selfprogramming/files/libCEC.deb/libcec_2.1.0-1_armhf.deb/download?use_mirror=freefr&use_mirror=netcologne"
+end
+
+execute "dpkg -i /tmp/cec.deb"
  
 template "/etc/timezone" do
   source "timezone.conf.erb"
